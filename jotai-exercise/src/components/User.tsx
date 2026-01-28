@@ -5,7 +5,7 @@ import {
   ageAtom,
   hobbiesAtom,
 } from "../atoms/user.atom";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 const hobbiesList = ["Sports", "Music", "Gaming", "Reading", "Travel"];
 
@@ -28,7 +28,7 @@ export default function User() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     setFirstName(formFirst);
@@ -56,29 +56,17 @@ export default function User() {
       <form onSubmit={handleSubmit} className="space-y-4 border p-4 rounded">
         <h2 className="text-xl font-semibold">Update User</h2>
 
-        <input
-          type="text"
-          placeholder="First name"
-          className="border p-2 w-full rounded"
-          value={formFirst}
+        <input type="text" placeholder="First name" className="border p-2 w-full rounded" value={formFirst}
           onChange={(e) => setFormFirst(e.target.value)}
           required
         />
 
-        <input
-          type="text"
-          placeholder="Last name"
-          className="border p-2 w-full rounded"
-          value={formLast}
+        <input type="text" placeholder="Last name" className="border p-2 w-full rounded" value={formLast}
           onChange={(e) => setFormLast(e.target.value)}
           required
         />
 
-        <input
-          type="number"
-          placeholder="Age"
-          className="border p-2 w-full rounded"
-          value={formAge}
+        <input type="number" placeholder="Age" className="border p-2 w-full rounded" value={formAge}
           onChange={(e) => setFormAge(e.target.value)}
           required
         />
@@ -88,20 +76,13 @@ export default function User() {
 
           {hobbiesList.map((hobby) => (
             <label key={hobby} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={formHobbies.includes(hobby)}
-                onChange={() => toggleHobby(hobby)}
-              />
+              <input type="checkbox" checked={formHobbies.includes(hobby)} onChange={() => toggleHobby(hobby)}/>
               {hobby}
             </label>
           ))}
         </div>
 
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-600 text-white rounded"
-        >
+        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
           Save
         </button>
       </form>
